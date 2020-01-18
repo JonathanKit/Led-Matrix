@@ -10,7 +10,7 @@ This code uses following librarys:
 	
   -NTPClient, to get a precies network time 
 	
-  -BlynkSimple 
+  -BlynkSimple, der QR Code kann in der App gescannt werden
 	
   -LEDMatrix, LEDText, FontMatrise from https://github.com/AaronLiddiment 
   
