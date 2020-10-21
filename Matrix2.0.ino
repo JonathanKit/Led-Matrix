@@ -19,10 +19,10 @@
 //using namespace ace_button;
 #define MATRIX_TYPE    HORIZONTAL_ZIGZAG_MATRIX
 
-const char *ssid     = "Toaster";
-const char *password = "Keinedickenelche";
+const char *ssid     = "ssid";
+const char *password = "password";
 // Button const int BUTTON_PIN = D0;
-char auth[] = "lfUE6aVmgTsOnICCSN5tWfEuvXraujeb";
+char auth[] = "authkey";
 
 String ntpTimeString;
 unsigned int counter=0;
@@ -81,6 +81,9 @@ void handleEvent(AceButton* , uint8_t eventType,
 }
 */
 
+//******** VIRTUAL FUNCTIONS **********//
+
+//function to change the modus of the matrix
 BLYNK_WRITE(V0)
 {
   modus = param.asInt(); // assigning incoming value from pin V1 to a variable
@@ -89,7 +92,7 @@ BLYNK_WRITE(V0)
   // process received value
 }
 
-
+//function to change the color
 BLYNK_WRITE(V1)
 {
   farbwechselgeschwindigkeit = param.asInt(); // assigning incoming value from pin V1 to a variable
@@ -97,18 +100,21 @@ BLYNK_WRITE(V1)
 
 BLYNK_WRITE(V2)
 {
-  geschwindigkeit = param.asInt(); // assigning incoming value from pin V1 to a variable
+  geschwindigkeit = param.asInt(); // assigning incoming value from pin V2 to a variable
 }
 
+//function to change the animation 
 BLYNK_WRITE(V3)
 {
-  animation_modus = param.asInt(); // assigning incoming value from pin V1 to a variable
+  animation_modus = param.asInt(); // assigning incoming value from pin V3 to a variable
 }
 
+//function to change the brightness
 BLYNK_WRITE(V4)
 {
-  brightness_setter = param.asInt(); // assigning incoming value from pin V1 to a variable
+  brightness_setter = param.asInt(); // assigning incoming value from pin V4 to a variable
 }
+
 
 void animation1(){
   int16_t x, y;
@@ -162,8 +168,7 @@ void animation1(){
   FastLED.show();
 }
 
-//ändert die Farbe der Matrix für die Uhrzeit
-   
+//ändert die Farbe der Matrix für die Uhrzeit 
 void editTimePrint(){
   ntpTimeString = timeClient.getFormattedTime();
 
@@ -200,6 +205,7 @@ void editTimePrint(){
    ScrollingMsgDown.SetTextColrOptions(COLR_HSV | COLR_SINGLE, color_min, 255, brightness);
    ScrollingMsgUp.SetTextColrOptions(COLR_HSV | COLR_SINGLE, color_hour, 255, brightness);
 }
+
 
 //schreibt die zeit auf die matrix
 void printTime(){
@@ -269,6 +275,8 @@ void setup(){
   FastLED.clear(true);
   FastLED.show();
 
+  //Setup the clock to have two lines with text
+  //one line is for the hour and the other line for the minutes
   ScrollingMsgUp.SetFont(MatriseFontData);
   ScrollingMsgUp.Init(&leds, leds.Width(), ScrollingMsgUp.FontHeight() + 1, 4, 8);
   ScrollingMsgUp.SetText((unsigned char *)TxtDemoUp, sizeof(TxtDemoUp) - 1);
