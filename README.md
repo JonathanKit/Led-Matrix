@@ -10,7 +10,7 @@ This code uses following librarys:
 	
   -NTPClient, to get a precies network time 
 	
-  -BlynkSimple, der QR Code kann in der App gescannt werden
+  -BlynkSimple, when scanning the QR code with the App the project is imported automatically
 	
   -LEDMatrix, LEDText, FontMatrise from https://github.com/AaronLiddiment 
   
@@ -19,4 +19,5 @@ This code uses following librarys:
 Following Hardware:
   -ESP8266
   -256x WS2812B Leds
+  -100 watt power supply
   
